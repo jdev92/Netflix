@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import netflixLogo from './netflix-logo.png';
+import data from './movies_rnexgr.json';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <div>
+          <img src={netflixLogo} className="logoNetflix" alt="logo netflix" />
+        </div>
       </header>
-    </div>
+      <main>
+        <div className='movies'>
+          {data.map((category, index) => (
+            <div key={index} className='category'>
+              <h2>{category.category}</h2>
+              <div className="carousel">
+                {category.images.map((image, imageIndex) => (
+                  <img
+                    key={imageIndex}
+                    src={image}
+                    alt={`Img ${imageIndex}`}
+                    className='carousel-image'
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </>
   );
 }
 
